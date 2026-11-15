@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>何嘉仁英文文法選擇題</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Noto+Sans+TC:wght@500;700;900&display=swap">
+<style>
+/* 畫風：與「英文單字漸進式挖空遊戲」相同 */
+:root{
+  --sky50:#f0f9ff; --sky100:#e0f2fe; --sky200:#bae6fd; --sky400:#38bdf8; --sky500:#0ea5e9; --sky600:#0284c7; --sky700:#0369a1;
+  --pink500:#ec4899; --pink600:#db2777; --amber300:#fcd34d; --amber400:#fbbf24; --amber900:#78350f;
+  --violet500:#8b5cf6; --green50:#f0fdf4; --green500:#22c55e; --green600:#16a34a; --red50:#fef2f2; --red500:#ef4444;
+  --slate100:#f1f5f9; --slate200:#e2e8f0; --slate400:#94a3b8; --slate500:#64748b; --slate700:#334155; --slate800:#1e293b;
+  --shadow3d:0 6px 0 rgba(0,0,0,.18);
+  --f:"Fredoka","Noto Sans TC",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;padding:0}
+body{font-family:var(--f);color:var(--slate700);font-size:17px;line-height:1.5;min-height:100vh;-webkit-tap-highlight-color:transparent;
+  background:radial-gradient(circle at 10% 10%,#fff7ae 0 12%,transparent 13%),
+             radial-gradient(circle at 90% 20%,#ffd6e7 0 10%,transparent 11%),
+             radial-gradient(circle at 80% 90%,#c9f2ff 0 14%,transparent 15%),
+             linear-gradient(160deg,#e0f4ff 0%,#fff4e0 100%);background-attachment:fixed}
+h1,h2,h3{margin:0;line-height:1.2;font-weight:700;color:var(--slate800)}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+button:focus-visible{outline:3px solid var(--sky400);outline-offset:2px}
+.muted{color:var(--slate500)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.spacer{flex:1}
+.emo{display:inline-block;line-height:1;font-style:normal}
+
+.screen{display:none;max-width:860px;margin:0 auto;padding:16px 16px 64px;flex-direction:column;gap:18px}
+.screen.active{display:flex}
+
+/* 立體按鈕 */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 18px;border-radius:16px;font-weight:700;font-size:16px;background:#fff;color:var(--slate700);box-shadow:var(--shadow3d);transition:transform .08s,box-shadow .08s}
+.btn:active{transform:translateY(4px);box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn.primary{background:var(--green500);color:#fff}
+.btn.small{min-height:40px;font-size:15px;padding:0 14px;border-radius:14px}
+.btn .emo{font-size:1.15em}
+.icon-btn{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:#fff;box-shadow:0 4px 0 rgba(0,0,0,.14);border:2px solid var(--slate100);flex:none;font-size:18px;transition:transform .08s}
+.icon-btn:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.14)}
+
+/* 頂部列 */
+.topbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{font-size:30px;line-height:1}
+.brand h1{font-size:clamp(20px,4.5vw,26px);color:var(--sky700)}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:700;padding:4px 12px;border-radius:99px;background:var(--sky50);color:var(--sky700);white-space:nowrap}
+.tag.sun{background:var(--amber300);color:var(--amber900)}
+.tag.leaf{background:var(--green500);color:#fff}
+.tag.coral{background:var(--red50);color:var(--red500)}
+
+/* 卡片 */
+.card{background:rgba(255,255,255,.9);border-radius:28px;padding:22px;box-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);display:flex;flex-direction:column;gap:16px}
+.card h2{font-size:24px}
+.eyebrow{font-size:16px;font-weight:700;color:var(--sky600)}
+.card-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.card-head p{margin:0;font-size:14px;color:var(--slate500);flex-basis:100%}
+
+/* 首頁 */
+.home-main{display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center;padding-top:2vh}
+.hero-emo{font-size:72px;line-height:1;margin-bottom:6px}
+.quiz-title{font-size:clamp(30px,6.5vw,42px);font-weight:700;margin:6px 0 0;color:var(--slate800)}
+.lessons{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;width:100%;max-width:560px}
+.lesson{min-height:92px;border-radius:24px;background:#fff;box-shadow:var(--shadow3d);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;transition:transform .08s,box-shadow .08s;padding:8px}
+.lesson:active{transform:translateY(4px);box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.lesson b{font-size:clamp(20px,4.5vw,24px);color:var(--sky700)}
+.lesson small{font-size:13px;color:var(--slate500);font-weight:600}
+.seg{display:flex;gap:8px;width:100%;max-width:560px;background:rgba(255,255,255,.7);padding:6px;border-radius:20px}
+.seg button{flex:1;min-height:52px;padding:0 10px;font-weight:700;font-size:clamp(15px,3.6vw,18px);border:2px solid var(--slate200);border-radius:16px;background:#fff;color:var(--slate500);white-space:nowrap}
+.seg button[aria-pressed="true"]{background:var(--sky500);color:#fff;border-color:var(--sky600);box-shadow:0 4px 0 var(--sky700)}
+.lesson .best{font-size:13px;font-weight:700;color:var(--green600)}
+.home-actions{display:flex;flex-direction:column;gap:14px;width:100%;max-width:360px}
+.home-actions .btn{min-height:64px;font-size:22px;border-radius:999px;width:100%}
+#btn-mix{background:var(--pink500);color:#fff}
+#btn-home-mistakes{background:var(--sky500);color:#fff}
+.count{display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 7px;border-radius:12px;background:var(--pink500);color:#fff;font-size:13px;font-weight:700}
+#btn-home-mistakes .count{background:#fff;color:var(--sky600)}
+
+/* 作答區 */
+.progress{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:17px;font-weight:700;color:var(--slate500)}
+.bar{flex:1 1 100%;height:12px;border-radius:99px;background:var(--slate100);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--sky400);border-radius:99px;transition:width .3s}
+.dots{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.dot{min-width:36px;height:36px;border-radius:12px;background:#fff;border:2px solid var(--slate200);font-weight:700;color:var(--slate400);display:grid;place-items:center;font-size:15px}
+.dot.ok{background:var(--green500);color:#fff;border-color:var(--green500)}
+.dot.bad{background:var(--red500);color:#fff;border-color:var(--red500)}
+.dot.cur{background:var(--sky500);color:#fff;border-color:var(--sky600);transform:scale(1.1)}
+.qbox{display:flex;flex-direction:column;align-items:center;gap:8px;padding:20px 18px;border-radius:24px;background:var(--sky50);border:2px solid var(--sky100)}
+.qbox .lbl{font-size:15px;font-weight:700;color:var(--sky600)}
+.qbox .txt{font-weight:600;font-size:clamp(22px,4.6vw,30px);line-height:1.5;color:var(--slate800);text-align:left;white-space:pre-line;max-width:100%}
+.blank{display:inline-block;min-width:3.2em;border-bottom:4px solid var(--pink500);color:transparent;margin:0 4px;line-height:1.1}
+.blank.filled{color:var(--green600);border-bottom-color:var(--green500);min-width:0;padding:0 4px;animation:bounceIn .45s ease-out}
+.opts{display:grid;gap:12px}
+.opt{display:flex;align-items:center;gap:14px;text-align:left;min-height:68px;padding:12px 18px;border-radius:22px;background:#fff;box-shadow:var(--shadow3d);border:3px solid transparent;font-weight:600;font-size:clamp(18px,4vw,22px);color:var(--slate800);transition:transform .08s,box-shadow .08s}
+.opt:active:not([disabled]){transform:translateY(4px);box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.opt .n{flex:none;width:40px;height:40px;border-radius:14px;background:var(--amber300);color:var(--amber900);display:grid;place-items:center;font-weight:700;font-size:20px;box-shadow:0 4px 0 #e0a800}
+.opt[disabled]{cursor:default}
+.opt.ok{border-color:var(--green500);background:var(--green50);color:var(--green600);animation:bounceIn .45s ease-out}
+.opt.ok .n{background:var(--green500);color:#fff;box-shadow:0 4px 0 var(--green600)}
+.opt.bad{border-color:var(--red500);background:var(--red50);color:var(--red500);animation:shake .4s ease}
+.opt.bad .n{background:var(--red500);color:#fff;box-shadow:0 4px 0 #b91c1c}
+.opt.dim{opacity:.45}
+@keyframes bounceIn{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
+@keyframes shake{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+.feedback{text-align:center;font-weight:700;font-size:22px;min-height:32px;color:var(--green600)}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cbtn{min-height:80px;border-radius:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-weight:700;font-size:clamp(17px,3.6vw,20px);box-shadow:var(--shadow3d);transition:transform .08s,box-shadow .08s;color:#fff}
+.cbtn:active{transform:translateY(4px);box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.cbtn[disabled]{opacity:.45;cursor:not-allowed}
+.cbtn .emo{font-size:26px}
+#btn-speak{background:var(--sky500)}
+#btn-restart{background:var(--amber400);color:var(--amber900)}
+
+/* 清單 */
+.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:#fff;border:2px solid var(--sky100);border-radius:20px;text-align:left}
+.item .info{flex:1;min-width:0}
+.item .q{font-weight:600;font-size:17px;color:var(--slate800);white-space:pre-line}
+.item .ans{font-weight:700;color:var(--green600);margin-top:4px}
+.item .yours{color:var(--red500);font-size:15px}
+.item .meta{font-size:14px;color:var(--slate500);display:flex;gap:6px 12px;flex-wrap:wrap;margin-top:4px;align-items:center}
+.empty{text-align:center;color:var(--slate500);padding:20px;background:var(--sky50);border-radius:20px}
+
+/* 彈窗 */
+.modal-mask{display:none;position:fixed;inset:0;z-index:50;background:rgba(15,23,42,.6);align-items:center;justify-content:center;padding:16px;overflow:auto}
+.modal-mask.show{display:flex}
+.modal{background:#fff;border-radius:28px;padding:26px 22px;width:min(480px,100%);text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;margin:auto;animation:bounceIn .45s ease-out}
+.modal h3{font-size:26px}
+.modal .badge{font-size:56px;line-height:1}
+.big-word{font-weight:700;font-size:clamp(24px,6vw,34px);color:var(--pink600);background:#fdf2f8;border-radius:20px;padding:6px 20px;word-break:break-word}
+.score-big{font-weight:700;font-size:clamp(40px,10vw,56px);color:var(--sky600);line-height:1}
+.modal .row{justify-content:center;width:100%}
+.modal .row .btn{flex:1}
+.modal .list{width:100%;max-height:45vh;overflow:auto}
+#btn-wrong-next{background:var(--violet500);color:#fff}
+#btn-again{background:var(--pink500);color:#fff}
+.confetti{position:fixed;top:-20px;z-index:100;pointer-events:none;width:10px;height:16px;border-radius:3px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+@media (max-width:480px){.lessons{grid-template-columns:repeat(3,1fr);gap:10px}.lesson{min-height:80px;border-radius:20px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ======================= 首頁 ======================= -->
+<section id="screen-home" class="screen active">
+  <div class="topbar">
+    <div class="brand"><div class="logo" aria-hidden="true">✏️</div><h1>何嘉仁英文文法選擇題</h1></div>
+  </div>
+  <section class="home-main">
+    <div>
+      <div class="hero-emo" aria-hidden="true">📚</div>
+      <div class="eyebrow">選班級，再選一課開始</div>
+      <h2 class="quiz-title">何嘉仁英文文法選擇題</h2>
+    </div>
+    <div class="seg" id="course-seg"></div>
+    <div class="lessons" id="lessons"></div>
+    <div class="home-actions">
+      <button class="btn" id="btn-mix" data-icon="dice">綜合挑戰（隨機 20 題）</button>
+      <button class="btn" id="btn-home-mistakes" data-icon="book">錯題本 <span class="count" id="home-mistake-count">0</span></button>
+    </div>
+  </section>
+</section>
+
+<!-- ======================= 作答頁 ======================= -->
+<section id="screen-game" class="screen">
+  <div class="topbar">
+    <button class="btn small" id="btn-game-back" data-icon="back">首頁</button>
+    <span class="tag sun" id="game-name"></span>
+    <span class="spacer"></span>
+    <button class="btn small" id="btn-game-mistakes" data-icon="book">錯題本 <span class="count" id="game-mistake-count">0</span></button>
+  </div>
+  <section class="card">
+    <div class="progress"><span id="q-progress"></span><span class="spacer"></span><span id="q-score"></span><div class="bar"><i id="q-bar"></i></div></div>
+    <div class="dots" id="dots"></div>
+    <div class="qbox"><span class="lbl">選出正確的答案</span><div class="txt" id="q-text"></div></div>
+    <div class="opts" id="opts"></div>
+    <div class="feedback" id="feedback"></div>
+    <div class="controls">
+      <button class="cbtn" id="btn-speak" data-icon="speaker">聽題目</button>
+      <button class="cbtn" id="btn-restart" data-icon="again">從頭再考</button>
+    </div>
+  </section>
+</section>
+
+<!-- ======================= 錯題本 ======================= -->
+<section id="screen-mistakes" class="screen">
+  <div class="topbar">
+    <button class="btn small" id="btn-mistakes-back" data-icon="back">首頁</button>
+  </div>
+  <section class="card">
+    <div class="card-head">
+      <h2>錯題本 <span class="tag sun" id="mistake-course"></span></h2>
+      <p>以下是曾經答錯的題目。在「練習錯題」中答對，就會從錯題本移除。</p>
+    </div>
+    <ul class="list" id="mistake-list"></ul>
+    <div class="row"><button class="btn primary" id="btn-practice-mistakes" data-icon="play">練習錯題</button><span class="spacer"></span><button class="btn small" id="btn-clear-mistakes" data-icon="trash">清空錯題本</button></div>
+  </section>
+</section>
+
+<!-- ======================= 彈窗：答錯 ======================= -->
+<div class="modal-mask" id="modal-wrong">
+  <div class="modal">
+    <div class="badge" aria-hidden="true">🤗</div>
+    <h3>差一點點！記住正確答案</h3>
+    <div class="big-word" id="wrong-correct"></div>
+    <div class="muted" id="wrong-yours"></div>
+    <div class="row">
+      <button class="btn" id="btn-wrong-speak" data-icon="speaker">聽題目</button>
+      <button class="btn" id="btn-wrong-next" data-icon="next">下一題</button>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= 彈窗：考完 ======================= -->
+<div class="modal-mask" id="modal-done">
+  <div class="modal">
+    <div class="badge" id="done-badge" aria-hidden="true">🎉</div>
+    <h3 id="done-title"></h3>
+    <div class="score-big" id="done-score"></div>
+    <p style="margin:0" class="muted" id="done-text"></p>
+    <ul class="list" id="done-list"></ul>
+    <div class="row">
+      <button class="btn" id="btn-done-home" data-icon="back">回首頁</button>
+      <button class="btn" id="btn-again" data-icon="again">再考一次</button>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= 彈窗：確認 ======================= -->
+<div class="modal-mask" id="modal-confirm">
+  <div class="modal">
+    <div class="badge" aria-hidden="true">🗑️</div>
+    <h3 id="confirm-title">確定要清空錯題本嗎？</h3>
+    <div class="row">
+      <button class="btn" id="btn-confirm-no">取消</button>
+      <button class="btn primary" id="btn-confirm-yes">確定清空</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const COURSES = [
+  { id: 'AESL02', name: 'TH AESL02 ESL02', data: [[{"q": "A: What does Alice have to do for her brother?\nB: She ______ make dinner for her brother.", "o": ["has to", "have to", "wants to"], "a": 0}, {"q": "A: Can we watch TV?\nB: No, we can’t watch TV. We ______ do the dishes.", "o": ["has to", "have to", "wants to"], "a": 1}, {"q": "A: Who wants to water the plants?\nB: ______", "o": ["Becky can water the plants.", "Paul has to water the plants.", "Alice and Pam want to water the plants."], "a": 2}, {"q": "A: What does your brother want to do?\nB: ______ wants to set the table.", "o": ["It", "He", "She"], "a": 1}, {"q": "A: ______ do Pam and Tim want to do in the afternoon?\nB: They want to do a puzzle in the afternoon.", "o": ["Who", "What", "Where"], "a": 1}, {"q": "A: ______ Becky’s brother have to take out the trash?\nB: Yes, he has to take out the trash.", "o": ["Is", "Can", "Does"], "a": 2}, {"q": "A: ______\nB: She has to mop the floor.", "o": ["What does your mother have to do?", "Where does your mother mop the floor?", "Does your mother have to mop the floor?"], "a": 0}, {"q": "A: Who has to feed the cat?\nB: ______", "o": ["My brother has to feed the cat.", "My father wants to feed the cat.", "My mother feeds the cat in the morning."], "a": 0}, {"q": "A: ______ the boys have to walk the dog?\nB: Yes, they have to walk the dog.", "o": ["Do", "Are", "Does"], "a": 0}, {"q": "A: ______\nB: They want to blow bubbles.", "o": ["Who has to blow bubbles?", "What do the tall girls want to do?", "Do the tall girls want to blow bubbles?"], "a": 1}], [{"q": "A: Are there any erasers on your desk?\nB: No, there ______ any erasers on my desk.", "o": ["are", "isn’t", "aren’t"], "a": 2}, {"q": "A: Is there a coloring book under the table?\nB: ______", "o": ["Yes, there is a coloring book under the table.", "Yes, there are some coloring books on the table.", "No, there isn’t a coloring book under the dollhouse."], "a": 0}, {"q": "A: What ______ in back of the fan?\nB: There are two yo-yos in back of the fan.", "o": ["is", "are", "does"], "a": 0}, {"q": "There are ______ blocks by the clock.", "o": ["a", "any", "some"], "a": 2}, {"q": "A: ______\nB: There are some crayons in front of the clock.", "o": ["What is in front of the clock?", "Is there a crayon in back of the clock?", "Are there any crayons in front of the clock?"], "a": 0}, {"q": "There is ______ in front of the lamp.", "o": ["a robot", "any yo-yos", "some toy cars"], "a": 0}, {"q": "A: Is there a balloon over the dollhouse?\nB: ______", "o": ["Yes, there is a balloon over the dollhouse.", "There are some balloons over the dollhouse.", "No, there aren’t any balloons under the dollhouse."], "a": 0}, {"q": "______ any books in the bookcase.", "o": ["There are", "There isn’t", "There aren’t"], "a": 2}, {"q": "A: ______ is in the toy box?\nB: There is a robot in the toy box.", "o": ["Who", "What", "Where"], "a": 1}, {"q": "A: ______\nB: No, there aren’t any boxes next to the closet.", "o": ["What is next to the closet?", "Are there any boxes next to the closet?", "Is there a big teddy bear next to the closet?"], "a": 1}], [{"q": "A: ______\nB: They have to get dressed at four o'clock.", "o": ["Who has to get dressed?", "Can your brothers get dressed at four o'clock?", "What time do your brothers have to get dressed?"], "a": 2}, {"q": "A: ______ do you and the short girl play cards?\nB: We play cards at eleven o'clock.", "o": ["What", "Where", "What time"], "a": 2}, {"q": "A: What ______ the tired teacher do at eight o'clock?\nB: She makes dinner at eight o'clock.", "o": ["do", "can", "does"], "a": 2}, {"q": "A: ______\nB: Yes, we eat lunch at twelve o'clock.", "o": ["Do you and Tim eat lunch at twelve o'clock?", "What time do you and your sister eat lunch?", "Do Becky and Susie eat lunch at twelve o'clock?"], "a": 0}, {"q": "A: ______\nB: It is two o'clock.", "o": ["What time is it?", "What time do the cats eat lunch?", "Does Paul go home at two o'clock?"], "a": 0}, {"q": "A: ______\nB: The woman gets up at six o'clock.", "o": ["Who gets up at nine o'clock?", "What does the woman want to do?", "What time does the woman get up?"], "a": 2}, {"q": "A: ______\nB: No, he does not go to bed at ten o'clock.", "o": ["What time does Chuck go to bed?", "Can Chuck go to bed at ten o'clock?", "Does Chuck go to bed at ten o'clock?"], "a": 2}, {"q": "I get dressed ______ six o'clock.", "o": ["on", "at", "in"], "a": 1}, {"q": "A: What time ______ Helen's brothers eat breakfast?\nB: They eat breakfast at seven o'clock.", "o": ["are", "do", "does"], "a": 1}, {"q": "A: What do Wally and Paul do at five o'clock?\nB: ______ do a puzzle.", "o": ["We", "He", "They"], "a": 2}], [{"q": "A: How ______ the students feel?\nB: They feel wonderful.", "o": ["do", "are", "does"], "a": 0}, {"q": "A: ______ the boy feel unhappy?\nB: Yes, he feels unhappy.", "o": ["Is", "Do", "Does"], "a": 2}, {"q": "A: How ______ Pam feel?\nB: She feels shy.", "o": ["do", "are", "does"], "a": 2}, {"q": "A: There is a test in the afternoon. ______\nB: We feel nervous.", "o": ["How do you and Rita feel?", "Who wants to have a test?", "What time do you and Rita have the test?"], "a": 0}, {"q": "Ted feels shy when he ______.", "o": ["meet new people", "hold his dad’s hand", "meets new people"], "a": 2}, {"q": "A: Does Susie feel safe when she holds her dad’s hand?\nB: ______", "o": ["She feels safe when she holds her dad’s hand.", "Yes, she feels safe when she holds her dad’s hand.", "Yes, she feels unhappy when she holds her dad’s hand."], "a": 1}, {"q": "A: ______ do you feel?\nB: I feel bored.", "o": ["How", "What", "Where"], "a": 0}, {"q": "The shy boy feels wonderful when ______ wins a game.", "o": ["he", "she", "they"], "a": 0}, {"q": "A: ______\nB: He feels terrible.", "o": ["What time does Tim win a game?", "How does Tim feel when he loses a game?", "Does Tim feel happy when he gets a good grade?"], "a": 1}, {"q": "A: How do you feel when you have a test?\nB: ______ I like tests.", "o": ["I feel excited.", "I feel terrible.", "I feel unhappy."], "a": 0}], [{"q": "A: ______\nB: Twelve.", "o": ["Are there any eggs?", "Do you want any eggs?", "How many eggs are there?"], "a": 2}, {"q": "A: ______\nB: No, there isn’t any pizza.", "o": ["Is there any pizza?", "Do you have any pizza?", "Do you want any pizza?"], "a": 0}, {"q": "The short boys are hungry.\nThey want ______ dumplings.", "o": ["a", "any", "some"], "a": 2}, {"q": "A: Is there ______ milk?\nB: Yes, there is some milk.", "o": ["a", "any", "some"], "a": 1}, {"q": "There are five ______ on the table.", "o": ["candy", "chicken", "tomatoes"], "a": 2}, {"q": "A: ______ hot dogs are there?\nB: There are two hot dogs.", "o": ["How", "What", "How many"], "a": 2}, {"q": "A: Is there any tea?\nB: ______", "o": ["There is some tea.", "There isn’t any tea.", "No, there isn’t any tea."], "a": 2}, {"q": "A: How many cookies ______?\nB: Five cookies.", "o": ["is there", "are there", "there are"], "a": 1}, {"q": "There isn’t any ______.", "o": ["cake", "beans", "sandwiches"], "a": 0}, {"q": "A: Is there any candy in the book bag?\nB: No, ______ any candy.", "o": ["there is", "there isn’t", "there aren’t"], "a": 1}], [{"q": "A: ______ is your brother doing?\nB: He is clapping.", "o": ["How", "What", "Where"], "a": 1}, {"q": "Becky and Susie ______ listening to stories.", "o": ["is", "am", "are"], "a": 2}, {"q": "A: Do you like to do kung fu?\nB: No, I ______ like to do kung fu.", "o": ["isn’t", "don’t", "doesn’t"], "a": 1}, {"q": "A: What ______ Alan and his sister doing?\nB: They are clapping.", "o": ["am", "is", "are"], "a": 2}, {"q": "A: ______\nB: I am hiding.", "o": ["Are you hiding?", "What are you doing?", "What time do you hide?"], "a": 1}, {"q": "A: ______\nB: I like to chase my friend.", "o": ["What are you doing?", "What do you like to do?", "Are you doing kung fu in the park?"], "a": 1}, {"q": "The girls are sad.\nThey ______.", "o": ["is crying", "are crying", "are laughing"], "a": 1}, {"q": "A: ______\nB: No, I don’t like to fight.", "o": ["Are you fighting?", "Do you like to fight?", "How do you feel when you fight?"], "a": 1}, {"q": "The cute student ______ on her jacket.", "o": ["is putting", "are putting", "aren’t putting"], "a": 0}, {"q": "A: ______ is yelling?\nB: Pam and Tim are yelling.", "o": ["Who", "How", "What"], "a": 0}], [{"q": "A: ______ Pam ever kiss her grandmother?\nB: Yes, she always kisses her grandmother.", "o": ["Is", "Do", "Does"], "a": 2}, {"q": "A: Who always lies?\nB: ______", "o": ["No, I never lie.", "Alice never lies.", "My cousin always lies."], "a": 2}, {"q": "A: Do you ever fight with your friend?\nB: ______", "o": ["Yes, I sometimes fight with my friend.", "Yes, I feel unhappy when I fight with my friend.", "I fight with my friend when we walk to school."], "a": 0}, {"q": "My sisters ______.", "o": ["never walks to school", "always help our parents", "usually washes behind their ears"], "a": 1}, {"q": "A: ______ do the girls feel happy?\nB: They feel happy when they hug their grandfather.", "o": ["How", "When", "What"], "a": 1}, {"q": "My school is in front of my home.\nI ______ walk to school.", "o": ["never", "always", "sometimes"], "a": 1}, {"q": "A: ______\nB: Yes, he sometimes shares his toys.", "o": ["What does your brother have?", "Does your brother want any toys?", "Does your brother ever share his toys?"], "a": 2}, {"q": "A: Does Tim ever lie?\nB: No, he ______.", "o": ["never lies", "always lie", "sometimes lie"], "a": 0}, {"q": "A: ______\nB: She usually feels shy when she meets new people.", "o": ["When does Becky usually feel shy?", "Does Becky feel shy when she meets her friends?", "Where does Becky meet new people?"], "a": 0}, {"q": "A: Does Wally ever pick his nose?\nB: ______", "o": ["He usually picks his nose.", "He picks his nose at school.", "Yes, he usually picks his nose."], "a": 2}], [{"q": "A: ______\nB: They will look for new shoes at the department store.", "o": ["Where will the boys look for new shoes?", "What will the boys do at the night market?", "Are the boys looking for new shoes at the department store?"], "a": 0}, {"q": "A: ______ will you do at your aunt’s shop?\nB: I will have a snack at my aunt’s shop.", "o": ["What", "When", "Where"], "a": 0}, {"q": "A: ______\nB: I will buy some food tomorrow.", "o": ["What will you do next week?", "When will you buy some food?", "Do you ever have a snack at the supermarket?"], "a": 1}, {"q": "A: What will you and your sister do at your cousin’s house?\nB: ______", "o": ["We will wait for Mom.", "We sometimes do a puzzle.", "We will go to my cousin’s house tomorrow."], "a": 0}, {"q": "A: What will you do at the night market?\nB: ______", "o": ["Yes, I will buy some food.", "I will buy some food at the night market.", "I always buy some food at the night market."], "a": 1}, {"q": "A: When will Paul and Tim go to the zoo?\nB: They ______ to the zoo tomorrow.", "o": ["go", "goes", "will go"], "a": 2}, {"q": "A: ______ will you use the computer?\nB: I will use the computer next week.", "o": ["What", "When", "Where"], "a": 1}, {"q": "A: ______\nB: She will use the computer at her uncle’s office.", "o": ["Does Alice use the computer?", "What will Alice do at her uncle’s office?", "When will Alice use the computer at her uncle’s office?"], "a": 1}, {"q": "Paul ______ the animals at his grandfather’s farm next week.", "o": ["feeds", "will feed", "are feeding"], "a": 1}, {"q": "A: ______ will you look at the animals?\nB: I will look at the animals at the zoo.", "o": ["What", "When", "Where"], "a": 2}], [{"q": "A: Is the queen writing wonderfully?\nB: No, ______ isn’t writing wonderfully.", "o": ["he", "she", "they"], "a": 1}, {"q": "A: ______ is crying sadly?\nB: The queen is crying sadly.", "o": ["Who", "When", "Where"], "a": 0}, {"q": "A: ______\nB: The unhappy queen is speaking quietly at the zoo.", "o": ["Who is speaking quietly at the zoo?", "Does the queen ever speak quietly at the zoo?", "How does the queen feel when she is at the zoo?"], "a": 0}, {"q": "A: ______ the handsome prince sing sadly next week?\nB: No, he won’t sing sadly next week.", "o": ["Is", "Will", "Does"], "a": 1}, {"q": "A: ______ is the hunter speaking?\nB: He is speaking loudly.", "o": ["How", "When", "What"], "a": 0}, {"q": "A: ______\nB: The fisherman is running slowly.", "o": ["How is the fisherman running?", "Is the fisherman running quickly?", "Will the fisherman run quickly tomorrow?"], "a": 0}, {"q": "A: Will the farmer write wonderfully?\nB: No, he ______ write wonderfully.", "o": ["will", "won’t", "doesn’t"], "a": 1}, {"q": "The kings ______ quickly in the park.", "o": ["runs", "is running", "are running"], "a": 2}, {"q": "A: Will the princess write terribly tomorrow?\nB: ______", "o": ["Yes, she is writing terribly.", "No, she never writes terribly.", "No, she won’t write terribly tomorrow."], "a": 2}, {"q": "A: ______\nB: The soldier is laughing happily.", "o": ["How is the soldier laughing?", "When will the soldier laugh?", "What does the soldier like to do?"], "a": 0}]] },
+  { id: 'AESL03', name: 'TH AESL03 ESL03', data: [[{"q":"There are ______ toys in the toy box. There are 500 toys!","o":["a few","a little","a lot of"],"a":2},{"q":"There is a lot of ______.","o":["gray clay","tissues","yellow straws"],"a":0},{"q":"A: ______\nB: There is only a little blue chalk.","o":["Is there any blue chalk?","How much blue chalk is there?","How many blue chairs are there?"],"a":1},{"q":"A: ______\nB: We need some orange paint.","o":["What do you like?","What do you need?","What do you want?"],"a":1},{"q":"A: ______ staplers are there in your book bag?\nB: There is one stapler.","o":["What","How many","How much"],"a":1},{"q":"There are ______ silver stars.","o":["much","only a few","only a little"],"a":1},{"q":"There is ______ red glitter on the picture.","o":["a few","only a little","many"],"a":1},{"q":"There are only a few ______.","o":["tissues","brown tape","red glitter"],"a":0},{"q":"There ______ only a little glue in my room.","o":["is","are","have"],"a":0},{"q":"______ a lot of colored pencils on the table.","o":["There is","They are","There are"],"a":2}],[{"q":"The popcorn ______ . I don't like it.","o":["looks mean","sounds loud","tastes salty"],"a":2},{"q":"A: ______ does your mom's pizza smell?\nB: It smells great.","o":["How","Why","What"],"a":0},{"q":"A: Why don't you like the music?\nB: ______","o":["No, I don't like the music.","I like it because it sounds loud.","I don't like it because it sounds loud."],"a":2},{"q":"A: ______\nB: No, I don't like sweet soup.","o":["What do you like?","Do you like sweet soup?","Why don't you like sweet soup?"],"a":1},{"q":"I ______ like the soup because it smells gross.","o":["aren't","don't","doesn't"],"a":1},{"q":"The tissues ______. I want to buy them.","o":["feel soft","sound quiet","taste sweet"],"a":0},{"q":"You look ______. Are you OK?","o":["sad","happy","friendly"],"a":0},{"q":"A: ______\nB: I like it because it tastes great.","o":["Do you like stinky tofu?","Why do you like stinky tofu?","How does the stinky tofu taste?"],"a":1},{"q":"A: How ______ the fat vendors look?\nB: They look mean.","o":["do","are","does"],"a":0},{"q":"A: ______ do you like the song?\nB: I like the song because it sounds great.","o":["Why","When","What"],"a":0}],[{"q":"A: ______\nB: I hugged the teacher yesterday.","o":["Who hugged the teacher yesterday?","Do you hug the teacher every day?","Why do you hug the teacher every day?"],"a":0},{"q":"A: What ______ your brother do this morning?\nB: He mopped the bathroom.","o":["do","did","does"],"a":1},{"q":"A: ______ watched TV yesterday?\nB: Wally watched TV yesterday.","o":["Who","Why","When"],"a":0},{"q":"A: Did Paul play the piano this morning?\nB: ______","o":["Yes, he played the piano this morning.","Yes, he plays the piano every afternoon.","No, he doesn't play the piano every morning."],"a":0},{"q":"Chuck read the story ______.\nHe read it in his room.","o":["tomorrow","yesterday","every day"],"a":1},{"q":"A: ______\nB: She made breakfast for her parents yesterday.","o":["What does Alice do?","What did Alice do yesterday?","Who made breakfast yesterday?"],"a":1},{"q":"A: Do your sisters wash their hands every day?\nB: Yes, they ______ their hands every day.","o":["wash","washes","washed"],"a":0},{"q":"Becky ______ up early this morning.","o":["get","got","gets"],"a":1},{"q":"A: ______\nB: Yes, she drinks juice in the morning.","o":["Who drank juice this morning?","What did Pam do in the morning?","Does Pam drink juice in the morning?"],"a":2},{"q":"Tim ______ to bed late yesterday because he studied for his test.","o":["go","goes","went"],"a":2}],[{"q":"My classmate ______ at the bus stop at three o'clock.","o":["did","was","were"],"a":1},{"q":"A: ______\nB: They were at the train station on Friday.","o":["Where were the bus drivers on Friday?","Were the bus drivers at the train station?","When were the doctors at the fire station?"],"a":0},{"q":"A: Was the handsome police officer at the police station on Sunday?\nB: ______","o":["Yes, he is at the police station.","He was at the fire station on Sunday.","No, he wasn't at the police station on Sunday."],"a":2},{"q":"A: ______\nB: Yes, she was at the restaurant.","o":["Where was the cook?","Is the cook at the restaurant?","Was the cook at the restaurant?"],"a":2},{"q":"The nurse ______ at the bus stop at six o'clock.\nNow it's seven o'clock. She is at the hospital.","o":["is","was","were"],"a":1},{"q":"A: ______ were they on Thursday?\nB: They were at the library.","o":["How","When","Where"],"a":2},{"q":"A: ______ was Tim at the dentist's office?\nB: He was at the dentist's office at two o'clock.","o":["Who","When","Where"],"a":1},{"q":"A: Where were you on Tuesday?\nB: I ______ at the library.","o":["am","was","were"],"a":1},{"q":"The firefighters ______ at the fire station on Sunday.\nThey were at home.","o":["wasn't","didn't","weren't"],"a":2},{"q":"A: ______\nB: Yes, he was at the hospital. He was sick.","o":["Where was your brother?","Was your brother at the hospital?","When was your brother at the hospital?"],"a":1}],[{"q":"I rode my new bike in the park ______.","o":["next week","tomorrow morning","yesterday morning"],"a":2},{"q":"Becky ______ ride her bike last night.\nShe flew an airplane.","o":["don't","didn't","doesn't"],"a":1},{"q":"A: ______ did you build the robot?\nB: I built it last weekend.","o":["What","When","Where"],"a":1},{"q":"A: ______ did you buy something to eat?\nB: I bought something to eat at the night market.","o":["What","When","Where"],"a":2},{"q":"My parents and I ______ dinner at the restaurant yesterday.\nThe food was good!","o":["ate","eat","eats"],"a":0},{"q":"Pam ______ for the bus at the bus stop yesterday.","o":["wait","waits","waited"],"a":2},{"q":"A: Where did Alice ______ her friends?\nB: She saw them in front of the library.","o":["see","saw","sees"],"a":0},{"q":"A: ______\nB: They looked for insects on the playground yesterday.","o":["What did the cooks do yesterday?","Where were the cooks yesterday?","What did the cooks look at in the zoo yesterday?"],"a":0},{"q":"A: What ______ your brother do last night?\nB: He looked at the moon.","o":["do","did","does"],"a":1},{"q":"A: Where did you hide from your cousins?\nB: ______","o":["We hid from them in the park.","We hid from them last weekend.","Yes, we hid from them yesterday afternoon."],"a":0}],[{"q":"Pam ______ to school late this morning.\nShe felt embarrassed.","o":["come","came","comes"],"a":1},{"q":"Amy ______ my things this morning. I felt angry.","o":["take","took","takes"],"a":1},{"q":"A: ______ happened? Your face is dirty.\nB: I fought with my sister.","o":["How","What","When"],"a":1},{"q":"A: ______ did Tim feel last weekend?\nB: He felt embarrassed.","o":["How","Who","Where"],"a":0},{"q":"A: ______\nB: She felt sorry last Saturday. She broke my watch.","o":["Did you break Becky's watch?","How did Becky feel last Saturday?","Where did Becky break your watch last Saturday?"],"a":1},{"q":"A: ______\nB: Tim said a bad word at school.","o":["How did Tim feel?","When did Tim say a bad word?","Who said a bad word at school?"],"a":2},{"q":"My mom feels ______.\nShe is yelling at me.","o":["sorry","angry","stupid"],"a":1},{"q":"A: ______ wrote on the wall?\nB: Chuck wrote on the wall.","o":["Who","What","When"],"a":0},{"q":"A: ______ Kate is crying.\nB: Her brother pulled her hair.","o":["What happened?","When did Kate and her brother fight?","Where were Kate and her brother?"],"a":0},{"q":"A: ______\nB: Wally sat on your sandwich this morning.","o":["What did Wally eat this morning?","Who sat on my sandwich this morning?","Where did Wally eat my sandwich this morning?"],"a":1}],[{"q":"A: ______\nB: They were busy because they built a house for their dog.","o":["Why were your neighbors busy this morning?","When did your neighbors build a house for their dog?","Where did your neighbors build a house this morning?"],"a":0},{"q":"The child has a lot of homework. He ______ busy.","o":["was","are","will be"],"a":2},{"q":"The guards were wet ______ they played in a puddle.","o":["but","and","because"],"a":2},{"q":"A: ______\nB: I was hot because I ran home.","o":["Who ran home?","Why did you run?","Why were you hot?"],"a":2},{"q":"A: ______\nB: Yes, he will be busy at five o'clock.","o":["How did the doctor feel?","Will the doctor be busy at five o'clock?","What did the doctor do at five o'clock?"],"a":1},{"q":"It's one o'clock now. I ______ cold at four o'clock.","o":["am","were","will be"],"a":2},{"q":"A: Will the nurse be cold at ten o'clock?\nB: No, she ______ cold at ten o'clock.","o":["wasn't","won't be","will be"],"a":1},{"q":"A: Was the bus driver full?\nB: ______ He ate ten hamburgers!","o":["Yes, he was full.","No, he didn't eat it.","Yes, he was thirsty."],"a":0},{"q":"______ were wet because they played in a puddle yesterday morning.","o":["The child","The guard","The children"],"a":2},{"q":"A: ______ were you busy last weekend?\nB: I was busy because I had a lot of homework.","o":["How","Why","When"],"a":1}],[{"q":"A: ______ the children throwing the airplane high?\nB: Yes, they are throwing the airplane high.","o":["Is","Do","Are"],"a":2},{"q":"A: ______\nB: She wrote carefully.","o":["How did Pam write?","Did Pam write carefully?","Is Pam writing carefully?"],"a":0},{"q":"A: ______ the doctor listen carefully yesterday?\nB: Yes, he listened carefully yesterday.","o":["Do","Did","Does"],"a":1},{"q":"A: Did the ball fly high?\nB: No, it ______ high.","o":["doesn't fly","didn't fly","isn't flying"],"a":1},{"q":"A: ______\nB: No, she didn't study hard. She got a bad grade.","o":["Who studied hard?","Did your sister study hard?","How did your sister study?"],"a":1},{"q":"A: Did Paul sit nicely?\nB: ______ He stood on his chair.","o":["Yes, he sat nicely.","No, he didn't sit nicely.","No, he didn't sit on my sandwich."],"a":1},{"q":"The children ______. The teacher was unhappy.","o":["sat nicely","didn't sit nicely","didn't paint carelessly"],"a":1},{"q":"The mice are ______ fast because the mean cat is behind them.\nThey are scared.","o":["run","ran","running"],"a":2},{"q":"A: ______ did your classmate play the organ?\nB: She played the organ well.","o":["How","Why","When"],"a":0},{"q":"A: How did Chuck ride?\nB: He ______ carefully.","o":["rode","rides","is riding"],"a":0}],[{"q":"Wally always puts on his pajamas ______ he goes to sleep.","o":["but","after","before"],"a":2},{"q":"A: What does Becky do before she takes a bath?\nB: She ______ her school uniform before she takes a bath.","o":["take off","takes off","took off"],"a":1},{"q":"A: What ______ Wally do after he plays with friends?\nB: He puts away his toys after he plays with friends.","o":["is","did","does"],"a":2},{"q":"A: ______ do the boys do after school?\nB: They practice English after school.","o":["When","What","Where"],"a":1},{"q":"A: Do you play video games after dinner?\nB: ______ I have a lot of homework to do every day.","o":["No, I don't play video games after dinner.","Yes, I play my video games before dinner.","Yes, I take out my video games before school."],"a":0},{"q":"A: ______\nB: No, I never practice English before school.","o":["What do you do before school?","When do you talk to your parents?","Do you ever practice English before school?"],"a":2},{"q":"A: ______\nB: They watch TV after they dry the dishes.","o":["Do the men watch TV after dinner?","What do the men do after they dry the dishes?","Do the men ever watch TV after they dry the dishes?"],"a":1},{"q":"A: Do you ever take a bath before you go to sleep?\nB: Yes, I ______ take a bath before I go to sleep every day.","o":["always","never","ever"],"a":0},{"q":"A: ______ before you go to sleep?\nB: Yes, I usually talk to them before I go to sleep.","o":["What did you do","Do you ever talk to your parents","Where do you talk to your parents"],"a":1},{"q":"A: ______ do you do after dinner?\nB: I always wash the dishes after dinner.","o":["Who","What","When"],"a":1}]] }
+];
+const K_COURSE = 'hessGrammar.course';
+let course = COURSES[1];
+let DATA = course.data;
+
+/* 圖示（表情符號） */
+const ICON = { play:'▶️', again:'🔄', back:'🏠', next:'➡️', trash:'🗑️', speaker:'🔊', book:'📒', dice:'🎲' };
+document.querySelectorAll('[data-icon]').forEach(e => e.insertAdjacentHTML('afterbegin', `<span class="emo">${ICON[e.dataset.icon]}</span>`));
+
+/* 儲存（只存在這台裝置的瀏覽器） */
+const K_BEST = 'hessGrammar.best', K_MISTAKE = 'hessGrammar.mistakes';
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+};
+const qKey = q => (q.course || course.id) + '|' + q.lesson + '|' + q.q;
+/* 舊版資料（只有 AESL03）搬到新格式 */
+(function migrate() {
+  const best = store.get(K_BEST, {}); let ch = false;
+  Object.keys(best).forEach(k => { if (/^(L\d+|MIX)$/.test(k)) { best['AESL03-' + k] = Math.max(best['AESL03-' + k] || 0, best[k]); delete best[k]; ch = true; } });
+  if (ch) store.set(K_BEST, best);
+  const ms = store.get(K_MISTAKE, []);
+  if (Array.isArray(ms) && ms.some(m => !m.course)) store.set(K_MISTAKE, ms.map(m => m.course ? m : { ...m, course: 'AESL03', key: 'AESL03|' + m.key }));
+})();
+function setCourse(id) { course = COURSES.find(c => c.id === id) || COURSES[1]; DATA = course.data; store.set(K_COURSE, course.id); }
+setCourse(store.get(K_COURSE, 'AESL03'));
+function loadAllMistakes() { const a = store.get(K_MISTAKE, []); return Array.isArray(a) ? a : []; }
+function loadMistakes() { return loadAllMistakes().filter(m => m.course === course.id); }
+function recordMistake(q, chosen) {
+  const list = loadAllMistakes(); let m = list.find(x => x.key === qKey(q));
+  if (!m) { m = { key: qKey(q), course: course.id, lesson: q.lesson, q: q.q, o: q.o, a: q.a, count: 0 }; list.push(m); }
+  m.count++; m.yours = q.o[chosen]; m.last = Date.now();
+  store.set(K_MISTAKE, list);
+}
+function removeMistake(q) { store.set(K_MISTAKE, loadAllMistakes().filter(x => x.key !== qKey(q))); }
+
+/* 小工具 */
+const $ = id => document.getElementById(id);
+function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+function shuffle(arr) { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function showScreen(n) { document.querySelectorAll('.screen').forEach(s => s.classList.remove('active')); $('screen-' + n).classList.add('active'); window.scrollTo(0, 0); }
+function openModal(id) { $(id).classList.add('show'); }
+function closeModal(id) { $(id).classList.remove('show'); }
+function confetti(count = 70) {
+  const colors = ['#0ea5e9', '#ec4899', '#facc15', '#22c55e', '#8b5cf6'];
+  for (let i = 0; i < count; i++) {
+    const c = el('div', 'confetti');
+    c.style.left = Math.random() * 100 + 'vw'; c.style.background = colors[i % colors.length];
+    c.style.animationDuration = (1.8 + Math.random() * 1.6) + 's'; c.style.animationDelay = (Math.random() * .4) + 's';
+    document.body.appendChild(c); setTimeout(() => c.remove(), 4200);
+  }
+}
+
+/* 念題目：優先用 Google 翻譯發音，失敗時用瀏覽器內建語音 */
+let currentAudio = null;
+function speakText(q) { return q.replace(/_{2,}/g, ' blank ').replace(/(^|\n)\s*[AB]:/g, '$1').replace(/\s+/g, ' ').trim(); }
+function speak(text) {
+  text = speakText(text);
+  if (currentAudio) { currentAudio.pause(); currentAudio = null; }
+  if ('speechSynthesis' in window) speechSynthesis.cancel();
+  let fellBack = false;
+  try {
+    const audio = new Audio('https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=en&q=' + encodeURIComponent(text));
+    currentAudio = audio;
+    const fallback = () => { if (fellBack || currentAudio !== audio) return; fellBack = true; speakWithBrowser(text); };
+    audio.addEventListener('error', fallback);
+    const p = audio.play(); if (p && p.catch) p.catch(fallback);
+  } catch (e) { speakWithBrowser(text); }
+}
+function speakWithBrowser(text) {
+  if (!('speechSynthesis' in window)) return;
+  const voices = speechSynthesis.getVoices();
+  const v = voices.find(v => /google/i.test(v.name) && v.lang === 'en-US') || voices.find(v => v.lang === 'en-US') || voices.find(v => /^en/i.test(v.lang));
+  const u = new SpeechSynthesisUtterance(text); u.lang = 'en-US'; u.rate = .85; if (v) u.voice = v;
+  speechSynthesis.speak(u);
+}
+if ('speechSynthesis' in window) { speechSynthesis.getVoices(); speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices(); }
+
+/* ======================= 首頁 ======================= */
+function renderHome() {
+  const best = store.get(K_BEST, {});
+  const seg = $('course-seg'); seg.innerHTML = '';
+  COURSES.forEach(c => {
+    const b = el('button', null, c.name); b.setAttribute('aria-pressed', String(c.id === course.id));
+    b.onclick = () => { setCourse(c.id); renderHome(); };
+    seg.appendChild(b);
+  });
+  const box = $('lessons'); box.innerHTML = '';
+  DATA.forEach((ls, i) => {
+    const b = el('button', 'lesson');
+    b.append(el('b', null, `第 ${i + 1} 課`), el('small', null, `${ls.length} 題`));
+    const k = course.id + '-L' + (i + 1);
+    if (best[k] != null) b.append(el('span', 'best', `⭐ 最佳 ${best[k]}/${ls.length}`));
+    b.onclick = () => startLesson(i);
+    box.appendChild(b);
+  });
+  updateCounts();
+}
+function updateCounts() { const n = loadMistakes().length; $('home-mistake-count').textContent = n; $('game-mistake-count').textContent = n; }
+function goHome() { renderHome(); showScreen('home'); }
+
+/* ======================= 作答 ======================= */
+const game = { qs: [], i: 0, right: 0, results: [], wrong: [], name: '', id: '', mode: 'normal', locked: false, restart: null };
+
+function withLesson(i) { return DATA[i].map(q => ({ ...q, lesson: i + 1 })); }
+function startLesson(i) { startRound(shuffle(withLesson(i)), `${course.id} 第 ${i + 1} 課`, course.id + '-L' + (i + 1), 'normal', () => startLesson(i)); }
+function startMix() { startRound(shuffle(DATA.flatMap((_, i) => withLesson(i))).slice(0, 20), course.id + ' 綜合挑戰', course.id + '-MIX', 'normal', startMix); }
+function startMistakes() {
+  const list = loadMistakes(); if (!list.length) return;
+  startRound(shuffle(list.map(m => ({ q: m.q, o: m.o, a: m.a, lesson: m.lesson }))), course.id + ' 錯題練習', '', 'mistakes', startMistakes);
+}
+function startRound(qs, name, id, mode, restart) {
+  Object.assign(game, { qs: qs.map(q => ({ ...q, order: shuffle([0, 1, 2]) })), i: 0, right: 0, results: [], wrong: [], name, id, mode, restart });
+  $('game-name').textContent = name;
+  updateCounts(); showScreen('game'); showQuestion();
+}
+
+function renderQText(q, filled) {
+  const box = $('q-text'); box.innerHTML = '';
+  const parts = q.q.split(/_{2,}/);
+  parts.forEach((p, k) => {
+    box.append(document.createTextNode(p));
+    if (k < parts.length - 1) {
+      const b = el('span', 'blank' + (filled != null ? ' filled' : ''), filled != null ? filled : '＿');
+      box.append(b);
+    }
+  });
+}
+
+function showQuestion() {
+  const q = game.qs[game.i];
+  game.locked = false;
+  $('q-progress').textContent = `第 ${game.i + 1} / ${game.qs.length} 題`;
+  $('q-score').textContent = `答對 ${game.right} 題`;
+  $('q-bar').style.width = (game.i / game.qs.length * 100) + '%';
+  const dots = $('dots'); dots.innerHTML = '';
+  game.qs.forEach((_, k) => {
+    const r = game.results[k];
+    const d = el('div', 'dot' + (r === true ? ' ok' : r === false ? ' bad' : '') + (k === game.i ? ' cur' : ''), r === true ? '✓' : r === false ? '✗' : String(k + 1));
+    dots.appendChild(d);
+  });
+  renderQText(q);
+  $('feedback').textContent = '';
+  const opts = $('opts'); opts.innerHTML = '';
+  q.order.forEach((oi, k) => {
+    const b = el('button', 'opt'); b.dataset.o = oi;
+    b.append(el('span', 'n', String(k + 1)), el('span', null, q.o[oi]));
+    b.onclick = () => pick(oi, b);
+    opts.appendChild(b);
+  });
+}
+
+function pick(oi, btn) {
+  if (game.locked) return;
+  game.locked = true;
+  const q = game.qs[game.i], ok = oi === q.a;
+  $('opts').querySelectorAll('.opt').forEach(b => {
+    b.disabled = true;
+    if (+b.dataset.o === q.a) b.classList.add('ok'); else if (b !== btn) b.classList.add('dim');
+  });
+  renderQText(q, q.o[q.a]);
+  game.results[game.i] = ok;
+  if (ok) {
+    game.right++;
+    if (game.mode === 'mistakes') removeMistake(q);
+    $('feedback').textContent = ['🎉 答對了！', '⭐ 好棒！', '👍 正確！'][Math.floor(Math.random() * 3)];
+    setTimeout(next, 1000);
+  } else {
+    btn.classList.add('bad'); btn.classList.remove('dim');
+    game.wrong.push({ ...q, yours: q.o[oi] });
+    recordMistake(q, oi); updateCounts();
+    setTimeout(() => {
+      $('wrong-correct').textContent = q.o[q.a];
+      $('wrong-yours').textContent = '你選的是：' + q.o[oi];
+      $('btn-wrong-next').lastChild.textContent = game.i + 1 < game.qs.length ? '下一題' : '看成績';
+      openModal('modal-wrong');
+    }, 500);
+  }
+}
+function next() { game.i++; game.i < game.qs.length ? showQuestion() : finish(); }
+
+function finish() {
+  const n = game.qs.length, r = game.right, perfect = r === n;
+  $('q-bar').style.width = '100%';
+  if (game.id) { const best = store.get(K_BEST, {}); if (!(best[game.id] >= r)) { best[game.id] = r; store.set(K_BEST, best); } }
+  $('done-badge').textContent = perfect ? '🏆' : r / n >= .8 ? '🌟' : r / n >= .6 ? '😊' : '💪';
+  $('done-title').textContent = perfect ? `${game.name} 全部答對！` : `${game.name} 考完囉！`;
+  $('done-score').textContent = `${r} / ${n}`;
+  $('done-text').textContent = perfect ? (game.mode === 'mistakes' ? '錯題都練會了，好棒！👏' : '一題都沒錯，太厲害了！👏')
+    : `這 ${game.wrong.length} 題要再加油（已放進錯題本）：`;
+  const ul = $('done-list'); ul.innerHTML = ''; ul.hidden = perfect;
+  game.wrong.forEach(w => ul.appendChild(mistakeItem(w, /MIX$/.test(game.id) || game.mode === 'mistakes')));
+  if (perfect) confetti();
+  openModal('modal-done');
+}
+
+function mistakeItem(m, showLesson) {
+  const li = el('li', 'item');
+  const info = el('div', 'info');
+  info.append(el('div', 'q', m.q), el('div', 'ans', '✓ ' + m.o[m.a]));
+  const meta = el('div', 'meta');
+  if (m.yours) meta.append(el('span', 'yours', '✗ 你選：' + m.yours));
+  if (showLesson) meta.append(el('span', 'tag', `第 ${m.lesson} 課`));
+  if (m.count) meta.append(el('span', null, `錯 ${m.count} 次`));
+  info.append(meta);
+  const sp = el('button', 'icon-btn'); sp.innerHTML = ICON.speaker; sp.title = '聽題目'; sp.onclick = () => speak(m.q);
+  li.append(info, sp);
+  return li;
+}
+
+/* ======================= 錯題本 ======================= */
+function showMistakeScreen() {
+  const list = loadMistakes().sort((a, b) => a.lesson - b.lesson || b.count - a.count);
+  const ul = $('mistake-list'); ul.innerHTML = '';
+  if (!list.length) ul.appendChild(el('li', 'empty', '目前沒有錯題，太棒了！'));
+  list.forEach(m => ul.appendChild(mistakeItem(m, true)));
+  $('mistake-course').textContent = course.name;
+  $('btn-practice-mistakes').hidden = !list.length;
+  $('btn-clear-mistakes').hidden = !list.length;
+  showScreen('mistakes');
+}
+
+/* ======================= 按鈕 ======================= */
+$('btn-mix').onclick = startMix;
+$('btn-home-mistakes').onclick = showMistakeScreen;
+$('btn-game-mistakes').onclick = showMistakeScreen;
+$('btn-mistakes-back').onclick = goHome;
+$('btn-game-back').onclick = goHome;
+$('btn-practice-mistakes').onclick = startMistakes;
+$('btn-speak').onclick = () => game.qs[game.i] && speak(game.qs[game.i].q);
+$('btn-restart').onclick = () => game.restart && game.restart();
+$('btn-wrong-speak').onclick = () => game.qs[game.i] && speak(game.qs[game.i].q);
+$('btn-wrong-next').onclick = () => { closeModal('modal-wrong'); next(); };
+$('btn-done-home').onclick = () => { closeModal('modal-done'); goHome(); };
+$('btn-again').onclick = () => { closeModal('modal-done'); game.restart(); };
+$('btn-clear-mistakes').onclick = () => { $('confirm-title').textContent = `確定要清空 ${course.name} 的錯題本嗎？`; openModal('modal-confirm'); };
+$('btn-confirm-no').onclick = () => closeModal('modal-confirm');
+$('btn-confirm-yes').onclick = () => { store.set(K_MISTAKE, loadAllMistakes().filter(m => m.course !== course.id)); closeModal('modal-confirm'); updateCounts(); showMistakeScreen(); };
+
+renderHome();
+</script>
+</body>
+</html>
